@@ -15,7 +15,7 @@ Give me like couple more days, so I can push a quick update, clean up the messy 
 
 ## Images
 
-![1](https://imgur.com/SvubPRR)
+![1](https://i.imgur.com/SvubPRR.png)
 
 ## Quick Note
 
