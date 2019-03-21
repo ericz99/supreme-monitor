@@ -3,6 +3,14 @@
 I already finished this supreme monitor long time ago, haven't really used it much. So thats why I am going to open source it.
 Give me like couple more days, so I can push a quick update, clean up the messy code and yeah! I have plans to create a discord server so I can host all my opensource monitor there.
 
+## Upcoming Update
+
+- Database
+- Custom Discord Embeds
+- Improve stock checking logic
+- More quicktask
+- Improve better performance
+
 ## Announcements
 
 - I will have another version of my supreme monitor with endpoint support, that I will be uploading in less than a week, prior to this version release. Stay tuned!
