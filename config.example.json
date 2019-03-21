@@ -1,0 +1,14 @@
+{
+  "discord_webhook": "",
+  "discord": {
+    "discord_webhook": "",
+    "webhook_username": "",
+    "avatar_url": "",
+    "footer_text": "",
+    "footer_icon_url": ""
+  },
+  "pollMS": "2000",
+  "locale": "en_US",
+  "proxy": ["", ""],
+  "search_status": "new"
+}
