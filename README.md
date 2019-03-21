@@ -14,7 +14,7 @@ Give me like couple more days, so I can push a quick update, clean up the messy 
 - Please install git, once you install git
 - open your terminal, run => git clone https://github.com/ericz99/supreme-monitor.git
 - cd into that folder => open your terminal or cmd => run yarn install => to install all package
-- then run => yarn run start, if you want to run forever please run => pm2 run index.js
+- then run => yarn run start, if you want to run forever please run => pm2 start index.js
 - please change config.example.json file to => config.json instead
   - in your config.json, change your locale to either en_US or en_GB depending your location => then for your discord if you want to customize it please input your stuff => input any proxies; FORMAT: ip:port:user:pass
 
