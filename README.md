@@ -1,7 +1,11 @@
-## Upcoming Supreme Monitor - Coming soon
+## Supreme Monitor - its out now
 
 I already finished this supreme monitor long time ago, haven't really used it much. So thats why I am going to open source it.
 Give me like couple more days, so I can push a quick update, clean up the messy code and yeah! I have plans to create a discord server so I can host all my opensource monitor there.
+
+## Current Bug
+
+- I don't got any UK proxies, so i can't fully test if it works... :(
 
 ## Upcoming Update
 
