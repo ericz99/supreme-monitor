@@ -45,19 +45,9 @@ Supreme.getProductData = (productLink, proxy, callback) => {
       if (!err && res.statusCode == 200) {
         const $ = cheerio.load(body);
 
-        // if locale set to US
-        if (config.locale == "en_US") {
-          var size = $("select#s")
-            .text()
-            .split("\n");
-        }
-
-        // if locale set to GB
-        if (config.locale == "en_GB") {
-          var size = $("select#size")
-            .text()
-            .split("\n");
-        }
+        var size = $("select#s")
+          .text()
+          .split("\n");
 
         const title = $("div#details")
           .children("h1")
