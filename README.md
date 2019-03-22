@@ -1,4 +1,4 @@
-## Supreme US Monitor - its out now
+## Supreme US Monitor ONLY!!!! - its out now
 
 I already finished this supreme monitor long time ago, haven't really used it much. So thats why I am going to open source it.
 Give me like couple more days, so I can push a quick update, clean up the messy code and yeah! I have plans to create a discord server so I can host all my opensource monitor there.
@@ -25,7 +25,7 @@ Give me like couple more days, so I can push a quick update, clean up the messy 
 - cd into that folder => open your terminal or cmd => run yarn install => to install all package
 - then run => yarn run start, if you want to run forever please run => pm2 start index.js
 - please change config.example.json file to => config.json instead
-  - in your config.json, change your locale to either en_US or en_GB depending your location => then for your discord if you want to customize it please input your stuff => input any proxies; FORMAT: ip:port:user:pass
+  - in your config.json => for your discord if you want to customize it please input your stuff => input any proxies; FORMAT: ip:port:user:pass
 
 ## Features
 
@@ -45,7 +45,7 @@ Give me like couple more days, so I can push a quick update, clean up the messy 
 - [ ] Database Configuration \* CURRENTLY NOT IMPLEMENTED :( - NEXT UPDATE WILL HAVE IT DONT WORRY
 - [x] Quicktask - Only Cyber, PD, Aurora as of now
 - [ ] Custom Discord Embed \* I'LL ADD IT NEXT WEEK FOR SURE
-- [x] Supported - US / EU
+- [x] Supported - US ONLY
 
 ## Images
 
