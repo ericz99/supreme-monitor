@@ -35,10 +35,4 @@ proxy.formatList = function(array) {
   return list;
 };
 
-proxy.formatList = function(array) {
-  if (array.length == 0) {
-    return null;
-  }
-};
-
 module.exports = proxy;
