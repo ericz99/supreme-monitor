@@ -1,11 +1,7 @@
-## Supreme Monitor - its out now
+## Supreme US Monitor - its out now
 
 I already finished this supreme monitor long time ago, haven't really used it much. So thats why I am going to open source it.
 Give me like couple more days, so I can push a quick update, clean up the messy code and yeah! I have plans to create a discord server so I can host all my opensource monitor there.
-
-## Current Bug
-
-- I don't got any UK proxies, so i can't fully test if it works... :(
 
 ## Upcoming Update
 
@@ -18,6 +14,7 @@ Give me like couple more days, so I can push a quick update, clean up the messy 
 ## Announcements
 
 - I will have another version of my supreme monitor with endpoint support, that I will be uploading in less than a week, prior to this version release. Stay tuned!
+  - WILL DEFINITELY SUPPORT UK + JP
 
 ## Instruction
 
@@ -38,7 +35,7 @@ Give me like couple more days, so I can push a quick update, clean up the messy 
 - Database Configuration
 - Quick Task Integrated (Implemented majority of the bot quick task)
 - Custom Discord Embed (You can change to your group if you want)
-- US / EU - SUPPORTED
+- US ONLY
 
 ## Todo
 
@@ -56,7 +53,7 @@ Give me like couple more days, so I can push a quick update, clean up the messy 
 
 ## Quick Note
 
-- JP does not work, JP will work on my other version that I will be uploading soon.
+- Sorry, EU, JP does not work, they will both work on my other version that I will be uploading soon.
 - No, I did not use the endpoint, because I feel that the front end store is much faster than loading thru backend.
   - I'll upload another version with endpoint implemented and it will probably be the exact same speed as the other version...
 - I would recommend using proxies because you will get temp ban or ban from supreme during drop day.
