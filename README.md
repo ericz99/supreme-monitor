@@ -1,20 +1,7 @@
 ## Supreme US Monitor ONLY!!!! - its out now
 
-I already finished this supreme monitor long time ago, haven't really used it much. So thats why I am going to open source it.
-Give me like couple more days, so I can push a quick update, clean up the messy code and yeah! I have plans to create a discord server so I can host all my opensource monitor there.
-
-## Upcoming Update
-
-- Database
-- Custom Discord Embeds
-- Improve stock checking logic
-- More quicktask
-- Improve better performance
-
-## Announcements
-
-- I will have another version of my supreme monitor with endpoint support, that I will be uploading in less than a week, prior to this version release. Stay tuned!
-  - WILL DEFINITELY SUPPORT UK + JP
+- uhh sorry guys supreme-monitor-2 won't be out until I finish my midterms + prepping for my internships soon...
+  - I will still update this monitor if needed.
 
 ## Instruction
 
@@ -34,7 +21,6 @@ Give me like couple more days, so I can push a quick update, clean up the messy 
 - Newly Added Item
 - Database Configuration
 - Quick Task Integrated (Implemented majority of the bot quick task)
-- Custom Discord Embed (You can change to your group if you want)
 - US ONLY
 
 ## Todo
@@ -42,9 +28,8 @@ Give me like couple more days, so I can push a quick update, clean up the messy 
 - [x] Restock Monitor
 - [x] Proxy Support
 - [x] Newly Added Item \* DID NOT TEST THIS SEASON YET, BUT SHOULD WORK
-- [ ] Database Configuration \* CURRENTLY NOT IMPLEMENTED :( - NEXT UPDATE WILL HAVE IT DONT WORRY
+- [ ] Database Configuration \* CURRENTLY NOT IMPLEMENTED
 - [x] Quicktask - Only Cyber, PD, Aurora as of now
-- [ ] Custom Discord Embed \* I'LL ADD IT NEXT WEEK FOR SURE
 - [x] Supported - US ONLY
 
 ## Images
