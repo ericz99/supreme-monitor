@@ -39,7 +39,7 @@ function initialChecker() {
     config.proxy.length > 0 ? proxyUtil.getRandomItem(config.proxy) : null;
 
   Supreme.getProductList(desktopUrl, randomProxy, (err, productList) => {
-    if (!err) {
+    if ((!err && productList !== null) || productList !== undefined) {
       const $ = cheerio.load(productList);
 
       productList.each(function() {
@@ -102,11 +102,12 @@ function startMonitor() {
         firstRun = false;
         logger.green("Initial check done!");
         logger.normal(`Poll Time: ${pollMS} MS`);
+        logger.normal(`Using ${config.proxy.length} proxy`);
         logger.yellow("Running for restock!");
       } else {
         // we are getting full product list from supreme
         Supreme.getProductList(desktopUrl, randomProxy, (err, productList) => {
-          if (!err) {
+          if ((!err && productList !== null) || productList !== undefined) {
             const $ = cheerio.load(productList);
 
             productList.each(function() {
@@ -193,6 +194,10 @@ function startMonitor() {
                             oldStock[productLink].size[i]
                           ) === -1
                         ) {
+                          console.log(true);
+                          console.log(oldStock[productLink].size);
+                          console.log(newStock[productLink].size);
+
                           // shallow copy new stock
                           const newArr = [...newStock[productLink].size];
                           // set that into old stock

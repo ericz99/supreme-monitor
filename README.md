@@ -3,6 +3,13 @@
 - uhh sorry guys supreme-monitor-2 won't be out until I finish my midterms + prepping for my internships soon...
   - I will still update this monitor if needed.
 
+## Update?
+
+- I added some error checking, the reason why it said "parent" is null or undefined is because the request body is null, therefore you are banned.
+- If you are using a server, please use user:pass proxies, and not any bad proxies. \* Any cloud server is probably blocked by supreme
+- I recommend running localhost b/c you are unlikely the get ban by supreme, but if you choose to run on a server, run with resi or dc proxies...
+- TO UPDATE THIS. cd where you dl your monitor => run git pull, if that don't work just redownload.
+
 ## Instruction
 
 - Please install NodeJS before installing anything, once you install nodejs...
