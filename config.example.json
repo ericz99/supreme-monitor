@@ -1,13 +1,12 @@
 {
-  "discord_webhook": "",
   "discord": {
     "discord_webhook": "",
-    "webhook_username": "",
+    "webhook_username": "Supreme Monitor",
     "avatar_url": "",
-    "footer_text": "",
+    "footer_text": "Custom Supreme Monitor",
     "footer_icon_url": ""
   },
   "pollMS": "2000",
-  "proxy": ["", ""],
-  "search_status": "new"
+  "proxy": [],
+  "search_status": "all"
 }
