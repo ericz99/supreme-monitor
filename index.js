@@ -121,12 +121,23 @@ function startMonitor() {
                 .attr("src")}`;
 
               // get all data
-              Supreme.getProductData(
-                productLink,
-                randomProxy,
-                (err, { title, color, size, price }) => {
-                  if (!err) {
-                    newStock[productLink] = {
+              Supreme.getProductData(productLink, randomProxy, (err, data) => {
+                if ((!err && data !== null) || undefined) {
+                  const { size, title, color, price } = data;
+                  newStock[productLink] = {
+                    imageUrl,
+                    title,
+                    color,
+                    size,
+                    price
+                  };
+
+                  /* CHECK FOR NEWLY ADDED PRODUCT */
+                  if (!oldStock.hasOwnProperty(productLink)) {
+                    // we want to clear db because we don't want to store any product that doesn't exist anymore
+
+                    // update db and sent webhook
+                    oldStock[productLink] = {
                       imageUrl,
                       title,
                       color,
@@ -134,191 +145,178 @@ function startMonitor() {
                       price
                     };
 
-                    /* CHECK FOR NEWLY ADDED PRODUCT */
-                    if (!oldStock.hasOwnProperty(productLink)) {
-                      // update db and sent webhook
-                      oldStock[productLink] = {
+                    // updated sizes
+                    var updatedSizes = oldStock[productLink].size.join(" / ");
+
+                    logger.blue(
+                      `${title}: +${color}, +${updatedSizes} new item in stock!`
+                    );
+
+                    // set newProduct == true
+                    newProduct = true;
+
+                    if (newProduct) {
+                      // store data so we can use it in our webhook
+                      const data = {
+                        qt: {
+                          /*  Quick Task  */
+                          cyberQt: `https://cybersole.io/dashboard/quicktask?url=${productLink}`,
+                          pdQt: `https://api.destroyerbots.io/quicktask?url=${productLink}`,
+                          auoraQt: `https://aurora-io.herokuapp.com/api/quicktask?options=supreme-url&input=${productLink}`
+                        },
+                        productLink,
+                        color,
                         imageUrl,
                         title,
-                        color,
                         size,
                         price
                       };
 
-                      logger.blue(
-                        `${title}: +${color}, +${updatedSizes} new item in stock!`
+                      // sent hook
+                      notify.sentNotification(
+                        data,
+                        "NEW",
+                        config,
+                        headers,
+                        shop
                       );
-
-                      // set newProduct == true
-                      newProduct = true;
-
-                      if (newProduct) {
-                        // store data so we can use it in our webhook
-                        const data = {
-                          qt: {
-                            /*  Quick Task  */
-                            cyberQt: `https://cybersole.io/dashboard/quicktask?url=${productLink}`,
-                            pdQt: `https://api.destroyerbots.io/quicktask?url=${productLink}`,
-                            auoraQt: `https://aurora-io.herokuapp.com/api/quicktask?options=supreme-url&input=${productLink}`
-                          },
-                          productLink,
-                          color,
-                          imageUrl,
-                          title,
-                          size,
-                          price
-                        };
-
-                        // sent hook
-                        notify.sentNotification(
-                          data,
-                          "NEW",
-                          config,
-                          headers,
-                          shop
-                        );
-                      }
                     }
-
-                    /* CHECK FOR RESTOCK */
-                    if (oldStock.hasOwnProperty(productLink)) {
-                      // check old stock to see if anything changed in the new stock
-                      for (
-                        var i = 0;
-                        i < oldStock[productLink].size.length;
-                        i++
-                      ) {
-                        // check if newstock size is different from oldstock
-                        if (
-                          newStock[productLink].size.indexOf(
-                            oldStock[productLink].size[i]
-                          ) === -1
-                        ) {
-                          console.log(true);
-                          console.log(oldStock[productLink].size);
-                          console.log(newStock[productLink].size);
-
-                          // shallow copy new stock
-                          const newArr = [...newStock[productLink].size];
-                          // set that into old stock
-                          oldStock[productLink].size = newArr;
-
-                          // updated sizes
-                          var updatedSizes = oldStock[productLink].size.join(
-                            " / "
-                          );
-
-                          logger.blue(
-                            `${title}: +${color}, +${updatedSizes} updated size!`
-                          );
-
-                          // set size updated to true
-                          sizeUpdated = true;
-
-                          // if sizeUpdated is true
-                          if (sizeUpdated) {
-                            const data = {
-                              qt: {
-                                /* Quick Tasks */
-                                cyberQt: `https://cybersole.io/dashboard/quicktask?url=${productLink}`,
-                                pdQt: `https://api.destroyerbots.io/quicktask?url=${productLink}`,
-                                auoraQt: `https://aurora-io.herokuapp.com/api/quicktask?options=supreme-url&input=${productLink}`
-                              },
-                              productLink,
-                              color,
-                              imageUrl,
-                              title,
-                              size: updatedSizes,
-                              price
-                            };
-
-                            // send notification
-                            notify.sentNotification(
-                              data,
-                              "RESTOCK",
-                              config,
-                              headers,
-                              shop
-                            );
-                          }
-                        }
-                      }
-
-                      // check new stock to see if anything changed.
-                      for (var i in newStock[productLink].size) {
-                        if (
-                          oldStock[productLink].size.indexOf(
-                            newStock[productLink].size[i]
-                          ) === -1
-                        ) {
-                          // oldStock[productLink].size.push(newStock[productLink].size[i]);
-
-                          // this basically applies all sizes from new stock to oldstock
-                          Array.prototype.push.apply(
-                            oldStock[productLink].size,
-                            newStock[productLink].size
-                          );
-
-                          // remove any duplicate values in the old database
-                          oldStock[productLink].size = _.uniq(
-                            oldStock[productLink].size,
-                            false
-                          );
-
-                          const parsedCategory = parseUrl(
-                            productLink
-                          ).pathname.split("/")[2];
-
-                          // updated sizes formatter
-                          var updatedSizes = newStock[productLink].size.join(
-                            " / "
-                          );
-
-                          logger.blue(
-                            `${title}: +${color}, +${updatedSizes} is now instock!`
-                          );
-                          /* simply push the size from the old database if anything changes in the new stock */
-                          restockFound = true;
-
-                          // if restock is found
-                          if (restockFound) {
-                            const data = {
-                              qt: {
-                                /* Quick Tasks */
-                                cyberQt: `https://cybersole.io/dashboard/quicktask?url=${productLink}`,
-                                pdQt: `https://api.destroyerbots.io/quicktask?url=${productLink}`,
-                                auoraQt: `https://aurora-io.herokuapp.com/api/quicktask?options=supreme-url&input=${productLink}`
-                              },
-                              productLink,
-                              color,
-                              imageUrl,
-                              title,
-                              size: updatedSizes,
-                              price
-                            };
-
-                            // send notification
-                            notify.sentNotification(
-                              data,
-                              "RESTOCK",
-                              config,
-                              headers,
-                              shop
-                            );
-                          }
-                        }
-                      }
-                    }
-                  } else {
-                    logger.red(
-                      "Possible Proxy Error Connection... Retrying in 5 second..."
-                    );
-                    setTimeout(() => {
-                      startMonitor();
-                    }, 5000);
                   }
+
+                  /* CHECK FOR RESTOCK */
+                  if (oldStock.hasOwnProperty(productLink)) {
+                    // check old stock to see if anything changed in the new stock
+                    for (
+                      var i = 0;
+                      i < oldStock[productLink].size.length;
+                      i++
+                    ) {
+                      // check if newstock size is different from oldstock
+                      if (
+                        newStock[productLink].size.indexOf(
+                          oldStock[productLink].size[i]
+                        ) === -1
+                      ) {
+                        // shallow copy new stock
+                        const newArr = [...newStock[productLink].size];
+                        // set that into old stock
+                        oldStock[productLink].size = newArr;
+
+                        // updated sizes
+                        var updatedSizes = oldStock[productLink].size.join(
+                          " / "
+                        );
+
+                        logger.blue(
+                          `${title}: +${color}, +${updatedSizes} updated size!`
+                        );
+
+                        // set size updated to true
+                        sizeUpdated = true;
+
+                        // if sizeUpdated is true
+                        if (sizeUpdated) {
+                          const data = {
+                            qt: {
+                              /* Quick Tasks */
+                              cyberQt: `https://cybersole.io/dashboard/quicktask?url=${productLink}`,
+                              pdQt: `https://api.destroyerbots.io/quicktask?url=${productLink}`,
+                              auoraQt: `https://aurora-io.herokuapp.com/api/quicktask?options=supreme-url&input=${productLink}`
+                            },
+                            productLink,
+                            color,
+                            imageUrl,
+                            title,
+                            size: updatedSizes,
+                            price
+                          };
+
+                          // send notification
+                          notify.sentNotification(
+                            data,
+                            "RESTOCK",
+                            config,
+                            headers,
+                            shop
+                          );
+                        }
+                      }
+                    }
+
+                    // check new stock to see if anything changed.
+                    for (var i in newStock[productLink].size) {
+                      if (
+                        oldStock[productLink].size.indexOf(
+                          newStock[productLink].size[i]
+                        ) === -1
+                      ) {
+                        // oldStock[productLink].size.push(newStock[productLink].size[i]);
+
+                        // this basically applies all sizes from new stock to oldstock
+                        Array.prototype.push.apply(
+                          oldStock[productLink].size,
+                          newStock[productLink].size
+                        );
+
+                        // remove any duplicate values in the old database
+                        oldStock[productLink].size = _.uniq(
+                          oldStock[productLink].size,
+                          false
+                        );
+
+                        const parsedCategory = parseUrl(
+                          productLink
+                        ).pathname.split("/")[2];
+
+                        // updated sizes formatter
+                        var updatedSizes = newStock[productLink].size.join(
+                          " / "
+                        );
+
+                        logger.blue(
+                          `${title}: +${color}, +${updatedSizes} is now instock!`
+                        );
+                        /* simply push the size from the old database if anything changes in the new stock */
+                        restockFound = true;
+
+                        // if restock is found
+                        if (restockFound) {
+                          const data = {
+                            qt: {
+                              /* Quick Tasks */
+                              cyberQt: `https://cybersole.io/dashboard/quicktask?url=${productLink}`,
+                              pdQt: `https://api.destroyerbots.io/quicktask?url=${productLink}`,
+                              auoraQt: `https://aurora-io.herokuapp.com/api/quicktask?options=supreme-url&input=${productLink}`
+                            },
+                            productLink,
+                            color,
+                            imageUrl,
+                            title,
+                            size: updatedSizes,
+                            price
+                          };
+
+                          // send notification
+                          notify.sentNotification(
+                            data,
+                            "RESTOCK",
+                            config,
+                            headers,
+                            shop
+                          );
+                        }
+                      }
+                    }
+                  }
+                } else {
+                  logger.red(
+                    "Possible Proxy Error Connection... Retrying in 5 second..."
+                  );
+                  setTimeout(() => {
+                    startMonitor();
+                  }, 5000);
                 }
-              );
+              });
             });
           } else {
             logger.red(
