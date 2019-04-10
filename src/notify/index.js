@@ -10,10 +10,12 @@ module.exports = {
     shop
   ) => {
     let opts = {
-      url: config.discord_webhook,
+      url: config.discord.discord_webhook,
       method: "POST",
       headers: headers,
       json: {
+        username: config.discord.webhook_username,
+        avatar_url: config.discord.avatar_url,
         embeds: [
           {
             author: {
@@ -23,10 +25,11 @@ module.exports = {
             url: productLink,
             color: 11796684,
             footer: {
-              text: `Supreme Monitor | ${dateFormat(
+              text: `${config.discord.footer_text} | ${dateFormat(
                 new Date(),
                 "yyyy-mm-dd HH:MM:ss:l"
-              )}`
+              )}`,
+              icon_url: config.discord.footer_icon_url
             },
             thumbnail: {
               url: `${imageUrl}`
@@ -65,7 +68,9 @@ module.exports = {
       }
     };
 
+    setTimeout(request, 600, opts);
+
     // send notification
-    request(opts);
+    // request(opts);
   }
 };

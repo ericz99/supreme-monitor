@@ -63,14 +63,14 @@ Supreme.getProductData = (productLink, proxy, callback) => {
           .text()
           .trim();
 
-        return callback(null, { size, title, color, price });
+        const data = { size, title, color, price };
+
+        return callback(null, data);
       } else {
         return callback(err, null);
       }
     }
   );
 };
-
-Supreme.checkSizeAvailability = () => {};
 
 module.exports = Supreme;

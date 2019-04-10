@@ -197,6 +197,10 @@ function startMonitor() {
                           oldStock[productLink].size[i]
                         ) === -1
                       ) {
+                        console.log(true);
+                        console.log(oldStock[productLink].size);
+                        console.log(newStock[productLink].size);
+
                         // shallow copy new stock
                         const newArr = [...newStock[productLink].size];
                         // set that into old stock
