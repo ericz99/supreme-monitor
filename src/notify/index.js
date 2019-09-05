@@ -57,9 +57,7 @@ module.exports = {
               },
               {
                 name: "Quick Tasks",
-                value: `[CYBER](${qt.cyberQt}) | [PD](${qt.pdQt}) | [AURORA](${
-                  qt.auoraQt
-                })`,
+                value: `[CYBER](${qt.cyberQt}) | [PD](${qt.pdQt}) | [TKS](${qt.tksQt})`,
                 inline: true
               }
             ]
