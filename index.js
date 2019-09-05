@@ -162,7 +162,7 @@ function startMonitor() {
                           /*  Quick Task  */
                           cyberQt: `https://cybersole.io/dashboard/quicktask?url=${productLink}`,
                           pdQt: `https://api.destroyerbots.io/quicktask?url=${productLink}`,
-                          auoraQt: `https://aurora-io.herokuapp.com/api/quicktask?options=supreme-url&input=${productLink}`
+                          tksQt: `https://thekickstationapi.com/login.html?redirectUrl=/quick-task.php?link=${productLink}&autostart=true`
                         },
                         productLink,
                         color,
@@ -225,7 +225,7 @@ function startMonitor() {
                               /* Quick Tasks */
                               cyberQt: `https://cybersole.io/dashboard/quicktask?url=${productLink}`,
                               pdQt: `https://api.destroyerbots.io/quicktask?url=${productLink}`,
-                              auoraQt: `https://aurora-io.herokuapp.com/api/quicktask?options=supreme-url&input=${productLink}`
+                              tksQt: `https://thekickstationapi.com/login.html?redirectUrl=/quick-task.php?link=${productLink}&autostart=true`
                             },
                             productLink,
                             color,
@@ -290,7 +290,7 @@ function startMonitor() {
                               /* Quick Tasks */
                               cyberQt: `https://cybersole.io/dashboard/quicktask?url=${productLink}`,
                               pdQt: `https://api.destroyerbots.io/quicktask?url=${productLink}`,
-                              auoraQt: `https://aurora-io.herokuapp.com/api/quicktask?options=supreme-url&input=${productLink}`
+                              tksQt: `https://thekickstationapi.com/login.html?redirectUrl=/quick-task.php?link=${productLink}&autostart=true`
                             },
                             productLink,
                             color,
