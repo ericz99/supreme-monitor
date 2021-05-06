@@ -17,6 +17,6 @@
     "pm2": "^3.4.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   }
 }
